@@ -1,0 +1,19 @@
+package com.makhalibagas.core.domain.usecase
+
+import androidx.paging.PagingData
+import com.makhalibagas.core.domain.model.Movie
+import com.makhalibagas.core.domain.repository.IMovieRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class MovieUseCase @Inject constructor(
+    private val repository: IMovieRepository,
+) {
+
+    operator fun invoke(
+        genre: String, scope: CoroutineScope,
+    ): Flow<PagingData<Movie>> =
+        repository.getMovie(genre, scope)
+
+}

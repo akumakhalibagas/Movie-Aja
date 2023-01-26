@@ -11,11 +11,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.makhalibagas.moviesaja.databinding.ActivityMovieBinding
-import com.makhalibagas.moviesaja.presentation.adapter.MovieAdapter
+import com.makhalibagas.core.adapter.MovieAdapter
 import com.makhalibagas.moviesaja.presentation.detail.DetailActivity
-import com.makhalibagas.moviesaja.utils.collectLifecycleFlow
-import com.makhalibagas.moviesaja.utils.movies_aja
-import com.makhalibagas.moviesaja.utils.viewBinding
+import com.makhalibagas.core.utils.collectLifecycleFlow
+import com.makhalibagas.core.utils.movies_aja
+import com.makhalibagas.core.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

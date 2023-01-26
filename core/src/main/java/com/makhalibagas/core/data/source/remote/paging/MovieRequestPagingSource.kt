@@ -1,0 +1,55 @@
+package com.makhalibagas.core.data.source.remote.paging
+
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.makhalibagas.core.data.source.remote.network.MovieApiService
+import com.makhalibagas.core.data.source.remote.response.MovieResponse
+import retrofit2.HttpException
+import timber.log.Timber
+import java.io.IOException
+
+class MovieRequestPagingSource(
+    private val apiService: MovieApiService,
+    private val genre: String,
+) : PagingSource<Int, MovieResponse>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse> {
+        return try {
+            val nextPageNumber = params.key ?: STARTING_PAGING
+            val response = apiService.getMovie(
+                genre = genre,
+                page = nextPageNumber
+            )
+
+            val data = response.results
+
+            if (data.isEmpty()) return LoadResult.Page(listOf(), null, null)
+
+            val currentPage = response.page
+            val totalPage = response.totalPages
+
+            LoadResult.Page(
+                data = data,
+                prevKey = null,
+                nextKey = if (currentPage == totalPage) null else currentPage + 1
+            )
+        } catch (e: IOException) {
+            Timber.e(e)
+            LoadResult.Error(e)
+        } catch (e: HttpException) {
+            Timber.e(e)
+            LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, MovieResponse>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
+    }
+
+    companion object {
+        private const val STARTING_PAGING = 1
+        const val NETWORK_CONFIG_ITEM = 20
+    }
+}

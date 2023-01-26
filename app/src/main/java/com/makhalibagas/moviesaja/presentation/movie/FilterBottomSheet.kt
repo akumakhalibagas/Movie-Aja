@@ -3,13 +3,12 @@ package com.makhalibagas.moviesaja.presentation.movie
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.makhalibagas.moviesaja.base.BaseBottomSheet
+import com.makhalibagas.core.adapter.FilterAdapter
+import com.makhalibagas.core.state.UiStateWrapper
+import com.makhalibagas.core.utils.collectLifecycleFlow
 import com.makhalibagas.moviesaja.databinding.BottomSheetFilterBinding
-import com.makhalibagas.moviesaja.presentation.adapter.FilterAdapter
-import com.makhalibagas.moviesaja.state.UiStateWrapper
-import com.makhalibagas.moviesaja.utils.collectLifecycleFlow
 
-class FilterBottomSheet : BaseBottomSheet<BottomSheetFilterBinding>() {
+class FilterBottomSheet : com.makhalibagas.core.base.BaseBottomSheet<BottomSheetFilterBinding>() {
 
     private val viewModel by activityViewModels<MovieViewModel>()
     private lateinit var adapter: FilterAdapter
