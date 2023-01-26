@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MoviesAja</string>
+    <string name="decs_example">When mysterious green slime monsters start popping out of soccer balls, all-star athletes Zlatan Ibrahimović and Megan Rapinoe must team up with their four biggest fans to stop evil</string>
+    <string name="vote_example">6.90</string>
+    <string name="title_example">Diary of a Wimpy Kid: Rodrick Rules</string>
+    <string name="text_error_network_not_avail">Oops, you seem to be offline. Please check your connection to internet.</string>
+    <string name="tv_filter">Filter</string>
+    <string name="tv_pilih_genre">Pilih Genre</string>
+    <string name="tv_bagas_makhali">Bagas Makhali</string>
+    <string name="user_review">User Review</string>
+    <string name="video_trailer">Video Trailer</string>
+    <string name="user_review_kosong">user review kosong</string>
+</resources>
